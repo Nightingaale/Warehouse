@@ -1,0 +1,36 @@
+# Warehouse
+Warehouse - a Spring-Boot microservice that provide access to different roles for interacting with this microservice.
+
+### Features
+
+Role-Based Access Control: 3 seperate controller for each type of user(Customer, Supplier, Manager)
+
+### Prerequisites
+- Java Development Kit(JDK): Version 17 or higher
+- Gradle: For project build and dependency management
+
+# Technologies 
+
+- Spring Boot(Web, Data JPA, Spring Security will be added sooner)
+- Gradle
+- Postman
+- PostgreSQL
+- Docker
+  
+# Information for the repository:
+
+1. Clone the repository
+ bash  
+git clone https://github.com/Nightingaale/Warehouse.git
+2. Find directory and open it in your IDE
+ bash
+cd ~/SQLHub
+3. Build the project
+ bash
+./gradlew build
+4. Configure Docker
+ bash
+docker run -d --name storage -e POSTGRES_DB=postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=secret -p 5432:5432 postgres:17.2-alpine3.20
+5. Run the microservice repeatedly (First - to create tables, second and etc - work with Postman)
+ bash
+./gradlew bootrunThe service will be accessible at http://localhost:8080 or you may configure other port.
