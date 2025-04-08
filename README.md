@@ -20,17 +20,23 @@ Role-Based Access Control: 3 seperate controller for each type of user(Customer,
 # Information for the repository:
 
 1. Clone the repository
- bash  
+ ```bash  
 git clone https://github.com/Nightingaale/Warehouse.git
+```
 2. Find directory and open it in your IDE
- bash
-cd ~/SQLHub
+ ```bash
+cd ~/Warehouse
+```
 3. Build the project
- bash
+ ```bash
 ./gradlew build
+```
 4. Configure Docker
- bash
+ ``` bash
 docker run -d --name storage -e POSTGRES_DB=postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=secret -p 5432:5432 postgres:17.2-alpine3.20
+```
 5. Run the microservice repeatedly (First - to create tables, second and etc - work with Postman)
- bash
-./gradlew bootrunThe service will be accessible at http://localhost:8080 or you may configure other port.
+ ```bash
+./gradlew bootrun
+```
+The service will be accessible at http://localhost:8080 or you may configure other port.
