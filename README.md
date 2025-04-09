@@ -16,6 +16,10 @@ Role-Based Access Control: 3 seperate controller for each type of user(Customer,
 - Postman
 - PostgreSQL
 - Docker
+
+# Flow Diagram
+
+<img src = "https://github.com/Nightingaale/Warehouse/blob/master/project-structure/structure.png" alt = "Diagram" width = "500px">
   
 # Information for the repository:
 
