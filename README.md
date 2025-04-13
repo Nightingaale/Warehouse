@@ -11,7 +11,7 @@ Role-Based Access Control: 3 seperate controller for each type of user(Customer,
 
 # Technologies 
 
-- Spring Boot(Web, Data JPA, Spring Security will be added sooner)
+- Spring Boot(Web, Data JPA)
 - Gradle
 - Postman
 - PostgreSQL
