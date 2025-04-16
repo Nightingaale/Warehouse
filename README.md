@@ -39,7 +39,7 @@ cd ~/Warehouse
  ``` bash
 docker run -d --name storage -e POSTGRES_DB=postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=secret -p 5432:5432 postgres:17.2-alpine3.20
 ```
-5. Run the microservice repeatedly
+5. Run the microservice
  ```bash
 ./gradlew bootrun
 ```
