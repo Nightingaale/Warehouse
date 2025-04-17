@@ -21,7 +21,6 @@ public class SupplierController {
 
     private final SuppliersRepository suppliersRepository;
     private final SuppliersListener suppliersListener;
-    private final OrdersRepository ordersRepository;
 
     @PostMapping("/signUp")
     public ResponseEntity<?> signUp(@RequestBody SuppliersEvent suppliersEvent) {
