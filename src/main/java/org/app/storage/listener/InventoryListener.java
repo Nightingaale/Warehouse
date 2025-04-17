@@ -2,7 +2,6 @@ package org.app.storage.listener;
 
 import lombok.RequiredArgsConstructor;
 import org.app.storage.event.InventoryEvent;
-import org.app.storage.models.Customers;
 import org.app.storage.models.Inventory;
 import org.app.storage.repo.InventoryRepository;
 import org.springframework.stereotype.Service;

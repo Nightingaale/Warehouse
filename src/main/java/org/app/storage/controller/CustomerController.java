@@ -24,7 +24,6 @@ public class CustomerController {
     private final OrdersRepository ordersRepository;
 
     @PostMapping("/signUp")
-    // Spring Security
     public ResponseEntity<?> signUp(@RequestBody CustomersEvent customersEvent) {
         Customers customer = CustomersListener.ToEntity(customersEvent);
         Customers savedCustomer = customersRepository.save(customer);
@@ -33,7 +32,6 @@ public class CustomerController {
     }
 
     @GetMapping("/profile/{id}")
-    // Spring Security
     public ResponseEntity<?> getCustomerProfile(@PathVariable Long id) {
         Optional<Customers> profile = customersListener.getFullCustomerProfile(id);
         CustomersEvent responseEvent = CustomersListener.ToDto(profile.get());
@@ -41,7 +39,6 @@ public class CustomerController {
     }
 
     @DeleteMapping("/profile/delete/{id}")
-    // Spring Security
     public ResponseEntity<?> deleteCustomer(@PathVariable Long id) {
         Optional<Customers> profile = customersListener.getFullCustomerProfile(id);
         CustomersEvent responseEvent = CustomersListener.ToDto(profile.get());
@@ -50,7 +47,6 @@ public class CustomerController {
     }
 
     @PostMapping("/createOrder")
-    // Spring Security 
     public ResponseEntity<?> createOrder(@RequestBody OrdersEvent ordersEvent) {
         Orders orders = OrdersListener.ToEntity(ordersEvent);
         Orders savedOrder = ordersRepository.save(orders);

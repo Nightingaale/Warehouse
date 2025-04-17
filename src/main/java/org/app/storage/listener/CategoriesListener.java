@@ -3,7 +3,6 @@ package org.app.storage.listener;
 import lombok.RequiredArgsConstructor;
 import org.app.storage.event.CategoriesEvent;
 import org.app.storage.models.Categories;
-import org.app.storage.models.Customers;
 import org.app.storage.repo.CategoriesRepository;
 import org.springframework.stereotype.Service;
 
