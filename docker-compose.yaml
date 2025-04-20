@@ -21,8 +21,5 @@ services:
     logging:
       options:
         max-size: '100m'
-
-
-
 volumes:
   pg_data:

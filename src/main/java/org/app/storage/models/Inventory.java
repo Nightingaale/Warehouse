@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
 
@@ -26,5 +27,7 @@ public class Inventory {
     private Warehouses warehouseId;
 
     private Long quantity;
+
+    @CreationTimestamp
     private Date lastUpdated;
 }
