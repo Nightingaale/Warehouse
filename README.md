@@ -3,7 +3,7 @@ Warehouse - a Spring-Boot microservice that provide access to different roles fo
 
 ### Features
 
-Role-Based Access Control: 3 seperate controller for each type of user(Customer, Supplier, Manager)
+Role-Based Access Control: 3 seperate controller for each type of user(Customer, Supplier, Manager).
 
 ### Prerequisites
 - Java Development Kit(JDK): Version 17 or higher
