@@ -1,8 +1,8 @@
 package org.app.storage.listener;
 
 import lombok.RequiredArgsConstructor;
-import org.app.storage.event.InventoryEvent;
-import org.app.storage.models.Inventory;
+import org.app.storage.dto.InventoryDto;
+import org.app.storage.entity.InventoryEntity;
 import org.app.storage.repo.InventoryRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +14,8 @@ public class InventoryListener {
 
     private final InventoryRepository inventoryRepository;
 
-    public static InventoryEvent ToDto(Inventory inventory) {
-        return new InventoryEvent(
+    public static InventoryDto ToDto(InventoryEntity inventory) {
+        return new InventoryDto(
                 inventory.getInventoryId(),
                 inventory.getProductId(),
                 inventory.getWarehouseId(),
@@ -24,8 +24,8 @@ public class InventoryListener {
         );
     }
 
-    public static Inventory ToEntity(InventoryEvent event) {
-        Inventory inventory = new Inventory();
+    public static InventoryEntity ToEntity(InventoryDto event) {
+        InventoryEntity inventory = new InventoryEntity();
         inventory.setInventoryId(event.getInventoryId());
         inventory.setProductId(event.getProductId());
         inventory.setWarehouseId(event.getWarehouseId());
@@ -34,19 +34,19 @@ public class InventoryListener {
         return inventory;
     }
 
-    public Optional<Inventory> getFullInventoryInfo(Long id) {
-        Optional<Inventory> inventoryOptional = inventoryRepository.findById(id);
+    public Optional<InventoryEntity> getFullInventoryInfo(Long id) {
+        Optional<InventoryEntity> inventoryOptional = inventoryRepository.findById(id);
 
         if (inventoryOptional.isEmpty()) {
             return Optional.empty();
         }
-        Inventory inventory = inventoryOptional.get();
-        Inventory DTO = convertToDto(inventory);
+        InventoryEntity inventory = inventoryOptional.get();
+        InventoryEntity DTO = convertToDto(inventory);
         return Optional.of(DTO);
     }
 
-    public static Inventory convertToDto(Inventory inventory) {
-        return new Inventory(
+    public static InventoryEntity convertToDto(InventoryEntity inventory) {
+        return new InventoryEntity(
                 inventory.getInventoryId(),
                 inventory.getProductId(),
                 inventory.getWarehouseId(),

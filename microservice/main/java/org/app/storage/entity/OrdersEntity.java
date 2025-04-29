@@ -1,4 +1,4 @@
-package org.app.storage.models;
+package org.app.storage.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,25 +8,24 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "orders")
-public class Orders {
+public class OrdersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customerId", referencedColumnName = "customerId")
-    private Customers customerId;
+    private CustomersEntity customerId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "supplierId", referencedColumnName = "supplierId")
-    private Suppliers supplierId;
+    private SuppliersEntity supplierId;
 
     @CreationTimestamp
     private Date orderDate;

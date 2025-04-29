@@ -1,8 +1,8 @@
 package org.app.storage.listener;
 
 import lombok.RequiredArgsConstructor;
-import org.app.storage.event.CategoriesEvent;
-import org.app.storage.models.Categories;
+import org.app.storage.dto.CategoriesDto;
+import org.app.storage.entity.CategoriesEntity;
 import org.app.storage.repo.CategoriesRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,16 +14,16 @@ public class CategoriesListener {
 
     private final CategoriesRepository categoriesRepository;
 
-    public static CategoriesEvent ToDto(Categories categories) {
-        return new CategoriesEvent(
+    public static CategoriesDto ToDto(CategoriesEntity categories) {
+        return new CategoriesDto(
                 categories.getCategoryId(),
                 categories.getCategoryName(),
                 categories.getCategoryDescription()
         ) ;
     }
 
-    public static Categories ToEntity(CategoriesEvent categoriesEvent) {
-        Categories categories = new Categories();
+    public static CategoriesEntity ToEntity(CategoriesDto categoriesEvent) {
+        CategoriesEntity categories = new CategoriesEntity();
         categories.setCategoryId(categoriesEvent.getCategoryId());
         categories.setCategoryName(categoriesEvent.getCategoryName());
         categories.setCategoryDescription(categoriesEvent.getCategoryDescription());
@@ -31,19 +31,19 @@ public class CategoriesListener {
     }
 
 
-    public Optional<Categories> getFullCategoryInfo(Long id) {
-        Optional<Categories> categoryOptional = categoriesRepository.findById(id);
+    public Optional<CategoriesEntity> getFullCategoryInfo(Long id) {
+        Optional<CategoriesEntity> categoryOptional = categoriesRepository.findById(id);
 
         if (categoryOptional.isEmpty()) {
             return Optional.empty();
         }
-        Categories category = categoryOptional.get();
-        Categories DTO = convertToProfileDto(category);
+        CategoriesEntity category = categoryOptional.get();
+        CategoriesEntity DTO = convertToProfileDto(category);
         return Optional.of(DTO);
     }
 
-    public static Categories convertToProfileDto(Categories categories) {
-        return new Categories(
+    public static CategoriesEntity convertToProfileDto(CategoriesEntity categories) {
+        return new CategoriesEntity(
                 categories.getCategoryId(),
                 categories.getCategoryName(),
                 categories.getCategoryDescription()

@@ -1,17 +1,17 @@
-package org.app.storage.event;
+package org.app.storage.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.app.storage.models.Categories;
+import org.app.storage.entity.CategoriesEntity;
 
 import java.sql.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductsEvent {
+public class ProductsDto {
     private Long productId;
-    private Categories categoryId;
+    private CategoriesEntity categoryId;
     private String productName;
     private String productDescription;
     private Date addedAt;

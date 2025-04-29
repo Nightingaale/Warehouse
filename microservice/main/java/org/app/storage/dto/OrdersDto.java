@@ -1,20 +1,20 @@
-package org.app.storage.event;
+package org.app.storage.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.app.storage.models.Customers;
-import org.app.storage.models.Suppliers;
+import org.app.storage.entity.CustomersEntity;
+import org.app.storage.entity.SuppliersEntity;
 
 import java.sql.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrdersEvent {
+public class OrdersDto {
     private Long orderId;
-    private Customers customerId;
-    private Suppliers supplierId;
+    private CustomersEntity customerId;
+    private SuppliersEntity supplierId;
     private Date orderDate;
     private Date expectedDeliveryDate;
     private String totalPrice;

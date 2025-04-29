@@ -1,4 +1,4 @@
-package org.app.storage.models;
+package org.app.storage.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,17 +9,18 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "suppliers")
-public class Suppliers {
+@Table(name = "customers")
+public class CustomersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long supplierId;
+    private Long customerId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "orderId", referencedColumnName = "orderId")
-    private Orders orderId;
-    private String name;
-    private String phoneNumber;
+    private OrdersEntity orderId;
+
+    private String firstName;
+    private String lastName;
     private String email;
-    private String address;
+    private String phoneNumber;
 }

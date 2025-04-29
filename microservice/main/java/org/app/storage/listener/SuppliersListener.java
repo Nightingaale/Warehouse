@@ -1,9 +1,9 @@
 package org.app.storage.listener;
 
 import lombok.RequiredArgsConstructor;
-import org.app.storage.event.SuppliersEvent;
-import org.app.storage.models.Orders;
-import org.app.storage.models.Suppliers;
+import org.app.storage.dto.SuppliersDto;
+import org.app.storage.entity.OrdersEntity;
+import org.app.storage.entity.SuppliersEntity;
 import org.app.storage.repo.OrdersRepository;
 import org.app.storage.repo.SuppliersRepository;
 import org.springframework.stereotype.Service;
@@ -17,8 +17,8 @@ public class SuppliersListener {
     private final SuppliersRepository suppliersRepository;
     private final OrdersRepository ordersRepository;
 
-    public static SuppliersEvent ToDto(Suppliers suppliers) {
-        return new SuppliersEvent(
+    public static SuppliersDto ToDto(SuppliersEntity suppliers) {
+        return new SuppliersDto(
                 suppliers.getSupplierId(),
                 suppliers.getOrderId(),
                 suppliers.getName(),
@@ -28,8 +28,8 @@ public class SuppliersListener {
         );
     }
 
-    public static Suppliers ToEntity(SuppliersEvent event) {
-        Suppliers suppliers = new Suppliers();
+    public static SuppliersEntity ToEntity(SuppliersDto event) {
+        SuppliersEntity suppliers = new SuppliersEntity();
         suppliers.setSupplierId(event.getSupplierId());
         suppliers.setOrderId(event.getOrderId());
         suppliers.setName(event.getName());
@@ -40,19 +40,19 @@ public class SuppliersListener {
     }
 
 
-    public Optional<Suppliers> getFullSupplierProfile(Long id) {
-        Optional<Suppliers> supplierOptional = suppliersRepository.findById(id);
+    public Optional<SuppliersEntity> getFullSupplierProfile(Long id) {
+        Optional<SuppliersEntity> supplierOptional = suppliersRepository.findById(id);
 
         if (supplierOptional.isEmpty()) {
             return Optional.empty();
         }
-        Suppliers supplier = supplierOptional.get();
-        Suppliers DTO = convertToProfileDto(supplier);
+        SuppliersEntity supplier = supplierOptional.get();
+        SuppliersEntity DTO = convertToProfileDto(supplier);
         return Optional.of(DTO);
     }
 
-    public static Suppliers convertToProfileDto(Suppliers suppliers) {
-        return new Suppliers(
+    public static SuppliersEntity convertToProfileDto(SuppliersEntity suppliers) {
+        return new SuppliersEntity(
                 suppliers.getSupplierId(),
                 suppliers.getOrderId(),
                 suppliers.getName(),
@@ -63,19 +63,19 @@ public class SuppliersListener {
     }
 
 
-    public Optional<Orders> getFullOrderInfo(Long id) {
-        Optional<Orders> orderInfo = ordersRepository.findById(id);
+    public Optional<OrdersEntity> getFullOrderInfo(Long id) {
+        Optional<OrdersEntity> orderInfo = ordersRepository.findById(id);
 
         if (orderInfo.isEmpty()) {
             return Optional.empty();
         }
-        Orders order = orderInfo.get();
-        Orders DTO = convertToOrderDto(order);
+        OrdersEntity order = orderInfo.get();
+        OrdersEntity DTO = convertToOrderDto(order);
         return Optional.of(DTO);
     }
 
-    public static Orders convertToOrderDto(Orders order) {
-        return new Orders(
+    public static OrdersEntity convertToOrderDto(OrdersEntity order) {
+        return new OrdersEntity(
                 order.getOrderId(),
                 order.getCustomerId(),
                 order.getSupplierId(),

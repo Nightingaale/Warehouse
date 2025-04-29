@@ -1,8 +1,8 @@
 package org.app.storage.listener;
 
 import lombok.RequiredArgsConstructor;
-import org.app.storage.event.ProductsEvent;
-import org.app.storage.models.Products;
+import org.app.storage.dto.ProductsDto;
+import org.app.storage.entity.ProductsEntity;
 import org.app.storage.repo.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +14,8 @@ public class ProductsListener {
 
     private final ProductRepository productRepository;
 
-    public static ProductsEvent ToDTO(Products products) {
-        return new ProductsEvent(
+    public static ProductsDto ToDTO(ProductsEntity products) {
+        return new ProductsDto(
                 products.getProductId(),
                 products.getCategoryId(),
                 products.getProductName(),
@@ -25,8 +25,8 @@ public class ProductsListener {
         );
     }
 
-    public static Products ToEntity(ProductsEvent productsEvent) {
-        Products products = new Products();
+    public static ProductsEntity ToEntity(ProductsDto productsEvent) {
+        ProductsEntity products = new ProductsEntity();
         products.setProductId(productsEvent.getProductId());
         products.setCategoryId(productsEvent.getCategoryId());
         products.setProductName(productsEvent.getProductName());
@@ -37,19 +37,19 @@ public class ProductsListener {
     }
 
 
-    public Optional<Products> getFullProductsInfo(Long id) {
-        Optional<Products> productInfo = productRepository.findById(id);
+    public Optional<ProductsEntity> getFullProductsInfo(Long id) {
+        Optional<ProductsEntity> productInfo = productRepository.findById(id);
 
         if (productInfo.isEmpty()) {
             return Optional.empty();
         }
-        Products product = productInfo.get();
-        Products DTO = convertToDto(product);
+        ProductsEntity product = productInfo.get();
+        ProductsEntity DTO = convertToDto(product);
         return Optional.of(DTO);
     }
 
-    public static Products convertToDto(Products product) {
-        return new Products(
+    public static ProductsEntity convertToDto(ProductsEntity product) {
+        return new ProductsEntity(
                 product.getProductId(),
                 product.getCategoryId(),
                 product.getProductName(),

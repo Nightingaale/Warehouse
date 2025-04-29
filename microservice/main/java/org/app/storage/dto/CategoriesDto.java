@@ -1,19 +1,15 @@
-package org.app.storage.models;
+package org.app.storage.dto;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "categories")
-public class Categories {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CategoriesDto {
     private Long categoryId;
     private String categoryName;
     private String categoryDescription;
 }
+

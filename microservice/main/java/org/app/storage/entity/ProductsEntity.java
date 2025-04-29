@@ -1,4 +1,4 @@
-package org.app.storage.models;
+package org.app.storage.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,14 +14,14 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "products")
-public class Products {
+public class ProductsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoryId", referencedColumnName = "categoryId")
-    private Categories categoryId;
+    private CategoriesEntity categoryId;
     private String productName;
     private String productDescription;
 

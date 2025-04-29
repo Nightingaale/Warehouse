@@ -2,8 +2,8 @@ package org.app.storage.listener;
 
 
 import lombok.RequiredArgsConstructor;
-import org.app.storage.event.CustomersEvent;
-import org.app.storage.models.Customers;
+import org.app.storage.dto.CustomersDto;
+import org.app.storage.entity.CustomersEntity;
 import org.app.storage.repo.CustomersRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,8 @@ public class CustomersListener {
     private final CustomersRepository customersRepository;
 
 
-    public static CustomersEvent ToDto(Customers customer) {
-        return new CustomersEvent(
+    public static CustomersDto ToDto(CustomersEntity customer) {
+        return new CustomersDto(
                 customer.getCustomerId(),
                 customer.getOrderId(),
                 customer.getFirstName(),
@@ -29,8 +29,8 @@ public class CustomersListener {
         );
     }
 
-    public static Customers ToEntity(CustomersEvent event) {
-        Customers customer = new Customers();
+    public static CustomersEntity ToEntity(CustomersDto event) {
+        CustomersEntity customer = new CustomersEntity();
         customer.setFirstName(event.getFirstName());
         customer.setLastName(event.getLastName());
         customer.setEmail(event.getEmail());
@@ -38,24 +38,24 @@ public class CustomersListener {
         return customer;
     }
 
-    public static ResponseEntity<CustomersEvent> create(CustomersEvent customersEvent) {
+    public static ResponseEntity<CustomersDto> create(CustomersDto customersEvent) {
         return new ResponseEntity<>(customersEvent, HttpStatus.CREATED);
     }
 
 
-    public Optional<Customers> getFullCustomerProfile(Long id) {
-        Optional<Customers> customerOptional = customersRepository.findById(id);
+    public Optional<CustomersEntity> getFullCustomerProfile(Long id) {
+        Optional<CustomersEntity> customerOptional = customersRepository.findById(id);
 
         if (customerOptional.isEmpty()) {
             return Optional.empty();
         }
-        Customers customer = customerOptional.get();
-        Customers DTO = convertToProfileDto(customer);
+        CustomersEntity customer = customerOptional.get();
+        CustomersEntity DTO = convertToProfileDto(customer);
         return Optional.of(DTO);
     }
 
-    public static Customers convertToProfileDto(Customers customer) {
-        return new Customers(
+    public static CustomersEntity convertToProfileDto(CustomersEntity customer) {
+        return new CustomersEntity(
                 customer.getCustomerId(),
                 customer.getOrderId(),
                 customer.getFirstName(),

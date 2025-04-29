@@ -1,16 +1,16 @@
-package org.app.storage.event;
+package org.app.storage.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.app.storage.models.Orders;
+import org.app.storage.entity.OrdersEntity;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SuppliersEvent {
+public class SuppliersDto {
     private Long supplierId;
-    private Orders orderId;
+    private OrdersEntity orderId;
     private String name;
     private String phoneNumber;
     private String email;

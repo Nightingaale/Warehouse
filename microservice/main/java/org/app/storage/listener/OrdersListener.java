@@ -2,8 +2,8 @@ package org.app.storage.listener;
 
 
 import lombok.RequiredArgsConstructor;
-import org.app.storage.event.OrdersEvent;
-import org.app.storage.models.Orders;
+import org.app.storage.dto.OrdersDto;
+import org.app.storage.entity.OrdersEntity;
 import org.app.storage.repo.OrdersRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +15,8 @@ public class OrdersListener {
 
     private final OrdersRepository ordersRepository;
 
-    public static OrdersEvent ToDto(Orders order) {
-        return new OrdersEvent(
+    public static OrdersDto ToDto(OrdersEntity order) {
+        return new OrdersDto(
                 order.getOrderId(),
                 order.getCustomerId(),
                 order.getSupplierId(),
@@ -28,8 +28,8 @@ public class OrdersListener {
         );
     }
 
-    public static Orders ToEntity(OrdersEvent event) {
-        Orders order = new Orders();
+    public static OrdersEntity ToEntity(OrdersDto event) {
+        OrdersEntity order = new OrdersEntity();
         order.setOrderId(event.getOrderId());
         order.setOrderDate(event.getOrderDate());
         order.setExpectedDeliveryDate(event.getExpectedDeliveryDate());
@@ -41,7 +41,7 @@ public class OrdersListener {
         return order;
     }
 
-    public static ResponseEntity<OrdersEvent> create(OrdersEvent ordersEvent) {
+    public static ResponseEntity<OrdersDto> create(OrdersDto ordersEvent) {
         return new ResponseEntity<>(ordersEvent, HttpStatus.CREATED);
     }
 }

@@ -1,8 +1,8 @@
 package org.app.storage.listener;
 
 import lombok.RequiredArgsConstructor;
-import org.app.storage.event.WarehousesEvent;
-import org.app.storage.models.Warehouses;
+import org.app.storage.dto.WarehousesDto;
+import org.app.storage.entity.WarehousesEntity;
 import org.app.storage.repo.WarehousesRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +14,8 @@ public class WarehousesListener {
 
     private final WarehousesRepository warehousesRepository;
 
-    public static WarehousesEvent ToDto(Warehouses warehouse) {
-        return new WarehousesEvent(
+    public static WarehousesDto ToDto(WarehousesEntity warehouse) {
+        return new WarehousesDto(
                 warehouse.getWarehouseId(),
                 warehouse.getSupplierId(),
                 warehouse.getProductId(),
@@ -25,8 +25,8 @@ public class WarehousesListener {
         );
     }
 
-    public static Warehouses ToEntity(WarehousesEvent warehousesEvent) {
-        Warehouses warehouses = new Warehouses();
+    public static WarehousesEntity ToEntity(WarehousesDto warehousesEvent) {
+        WarehousesEntity warehouses = new WarehousesEntity();
         warehouses.setWarehouseId(warehousesEvent.getWarehouseId());
         warehouses.setSupplierId(warehousesEvent.getSupplierId());
         warehouses.setProductId(warehousesEvent.getProductId());
@@ -37,18 +37,18 @@ public class WarehousesListener {
     }
 
 
-    public Optional<Warehouses> getWarehouseInfo(Long id) {
-        Optional<Warehouses> warehouseInfo = warehousesRepository.findById(id);
+    public Optional<WarehousesEntity> getWarehouseInfo(Long id) {
+        Optional<WarehousesEntity> warehouseInfo = warehousesRepository.findById(id);
         if (warehouseInfo.isEmpty()) {
             return Optional.empty();
         }
-        Warehouses warehouse = warehouseInfo.get();
-        Warehouses DTO = convertToWarehouseDto(warehouse);
+        WarehousesEntity warehouse = warehouseInfo.get();
+        WarehousesEntity DTO = convertToWarehouseDto(warehouse);
         return Optional.of(DTO);
     }
 
-    public static Warehouses convertToWarehouseDto(Warehouses warehouse) {
-        return new Warehouses(
+    public static WarehousesEntity convertToWarehouseDto(WarehousesEntity warehouse) {
+        return new WarehousesEntity(
                 warehouse.getWarehouseId(),
                 warehouse.getSupplierId(),
                 warehouse.getProductId(),
