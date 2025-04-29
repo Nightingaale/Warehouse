@@ -37,7 +37,7 @@ cd ~/Warehouse
 ```
 4. Configure Docker
  ``` bash
-docker run -d --name storage -e POSTGRES_DB=postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=secret -p 5432:5432 postgres:17.2-alpine3.20
+docker run -d --name YOUR-NAME -e POSTGRES_DB=YOURS -e POSTGRES_USER=YOURS -e POSTGRES_PASSWORD=YOURS -p PORT:PORT postgres:17.2-alpine3.20
 ```
 5. Run the microservice
  ```bash
