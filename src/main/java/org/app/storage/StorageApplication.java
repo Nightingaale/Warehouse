@@ -1,4 +1,4 @@
-package org.app;
+package org.app.storage;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
