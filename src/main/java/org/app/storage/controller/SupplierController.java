@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/sup")
+@RequestMapping("/api/v1/supplier")
 public class SupplierController {
 
     private final SuppliersRepository suppliersRepository;

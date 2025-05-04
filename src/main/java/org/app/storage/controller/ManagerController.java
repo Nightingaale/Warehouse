@@ -24,7 +24,7 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/manager")
+@RequestMapping("/api/v1/manager")
 public class ManagerController {
 
     private final WarehousesRepository warehousesRepository;
