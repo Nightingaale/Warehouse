@@ -35,7 +35,7 @@ cd ~/Warehouse
  ```bash
 ./gradlew build
 ```
-4. Configure Docker
+4. Configure Docker according to .env
  ``` bash
 docker run -d --name YOUR-NAME -e POSTGRES_DB=YOURS -e POSTGRES_USER=YOURS -e POSTGRES_PASSWORD=YOURS -p PORT:PORT postgres:17.2-alpine3.20
 ```
